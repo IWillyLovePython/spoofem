@@ -20,3 +20,6 @@ fetch("https://raw.githubusercontent.com/IWillyLovePython/spoofem/main/index.js"
     console.error('Error fetching or executing JavaScript: ', error);
   });
 ```
+
+
+  ![image](https://github.com/IWillyLovePython/spoofem/assets/104280094/72845167-7927-492f-af06-6ba53ec967ff)
