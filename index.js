@@ -76,115 +76,115 @@ let spoofPanel =  `<style>
 
 document.body.insertAdjacentHTML('beforeend', spoofPanel);
 
-	/* Dragging Panel */
-	const panelContainer = document.querySelector('.panel-container');
-	const panelHeader = document.querySelector('.panel-header');
-	
-	panelContainer.addEventListener('dragstart', (event) => {
-		event.dataTransfer.setData('text/plain', 'panel');
-	});
-	
-	document.addEventListener('dragover', (event) => {
-		event.preventDefault();
-	});
+/* Dragging Panel */
+const panelContainer = document.querySelector('.panel-container');
+const panelHeader = document.querySelector('.panel-header');
 
-	document.addEventListener('drop', (event) => {
-		event.preventDefault();
-		if (event.dataTransfer.getData('text/plain') === 'panel') {
-			panelContainer.style.left = (event.clientX - panelContainer.offsetWidth / 2) + 'px';
-			panelContainer.style.top = (event.clientY - panelContainer.offsetHeight / 10) + 'px';
-		}
-	});
+panelContainer.addEventListener('dragstart', (event) => {
+	event.dataTransfer.setData('text/plain', 'panel');
+});
 
-	/* Spoofing functions */
+document.addEventListener('dragover', (event) => {
+	event.preventDefault();
+});
 
-    /* INITIALIZING VARIABLES WITH HTML */
-    
-    editTextBox = `
-    <div class="form-group form-has-feedback description-container" ng-class="{'form-has-error': $ctrl.layout.descriptionError }">
-        <textarea class="form-control input-field personal-field-description ng-valid ng-valid-maxlength ng-touched ng-dirty ng-not-empty" id="descriptionTextBox" placeholder="Tell the Roblox community about what you like to make, build, and explore..." rows="4" ng-model="$ctrl.data.description" maxlength="1000"></textarea>
-        <div class="description-event">
-            <span class="small text ng-binding" ng-bind="'Description.AboutWarning' | translate">Keep yourself safe, do not share personal details online.</span> 
-            <!-- ngIf: $ctrl.layout.descriptionError --> <!-- ngIf: !$ctrl.layout.descriptionError -->
-            <p ng-if="!$ctrl.layout.descriptionError" class="form-control-label ng-binding ng-scope" ng-bind="$ctrl.data.description.length | formatCharacterCount: $ctrl.layout.maxDescriptionLength">3/1000</p>
-            <!-- end ngIf: !$ctrl.layout.descriptionError --> 
-        </div>
-    
-        <div class="description-buttons"> 
-            <button id="CancelInfoSettings" class="btn-control-md btn-min-width acct-settings-btn ng-binding" ng-click="$ctrl.updateDescription(false)" ng-bind="'Action.Cancel' | translate" onclick="cancelDescription()">Cancel</button> 
-            <button id="SaveInfoSettings" class="btn-control-md btn-min-width acct-settings-btn ng-binding" ng-click="$ctrl.updateDescription(true)" ng-bind="'Action.Save' | translate" onclick="saveDescription()">Save</button> 
-        </div>
-    </div>
-    `
-
-    setDescription = `
-    <!--Default profile about section with status intact, remove ! to hide-->
-    <div class="profile-about-content toggle-target">
-        <!--Use ng-show here so the Read More binding callback can work (Reference/widget.js)-->
-        <pre id="profile-about-text" class="text profile-about-text">                    
-            <span class="profile-about-content-text linkify" ng-non-bindable="">$replaceMe</span>    
-        </pre>
-        <span class="toggle-content text-link cursor-pointer" data-container-id="profile-about-text" data-show-label="Read More" data-hide-label="Show Less" style="display: none;">Read More</span>
-    </div>
-    `
-
-    aboutHeader = `<h2>About</h2>`
-
-    let originalDescription;
-
-    /* 
-        -Setting Up Main Functions (Edit, Cancel, Save) 
-        -Adding Change Description Button
-    */
-
-    function editDescription() {
-        originalDescription = document.getElementsByClassName("profile-about-content-text linkify")[0].textContent
-        document.getElementsByClassName("section-content remove-panel")[0].innerHTML = editTextBox
-        document.getElementById("descriptionTextBox").value = originalDescription
-
-        document.getElementsByClassName("container-header")[0].innerHTML = aboutHeader
-    }
-    
-    function saveDescription() {
-        let description = document.getElementById("descriptionTextBox").value;
-        document.getElementsByClassName("section-content remove-panel")[0].innerHTML = setDescription.replace("$replaceMe", description)
-        document.getElementsByClassName("container-header")[0].innerHTML = editButton
-    }
-
-    function cancelDescription() {
-        document.getElementsByClassName("section-content remove-panel")[0].innerHTML = setDescription.replace("$replaceMe", originalDescription)
-        document.getElementsByClassName("container-header")[0].innerHTML = editButton
-    }
-
-	function description() {
-		document.getElementsByClassName("container-header")[0].innerHTML = editButton
-    }
-
-    editButton = `
-        <h2 ng-bind="'Heading.AboutTab' | translate" class="ng-binding">About</h2>
-    
-        <!-- ngIf: $ctrl.layout.canEdit -->
-        
-        <div ng-if="$ctrl.layout.canEdit" ng-hide="$ctrl.layout.showEditBox" class="ng-scope"> 
-            <button class="btn-generic-edit-sm" ng-click="$ctrl.openEditBox()" onclick="editDescription()"> 
-                <span class="icon-edit"></span> 
-            </button> 
-        </div>
-        
-        <!-- end ngIf: $ctrl.layout.canEdit --> 
-    `
-
-	function displayname() {
-        document.getElementsByClassName("profile-name text-overflow")[0].contentEditable = true
-        document.getElementsByClassName("profile-name text-overflow")[0].spellcheck = false
-		document.getElementsByClassName("profile-name text-overflow")[0].textContent = "Edit Me"
-    }
-
-	function action() {
-		document.getElementsByClassName("details-actions desktop-action")[0].remove()
-		document.getElementsByClassName("user-tag-header")[0].remove()
+document.addEventListener('drop', (event) => {
+	event.preventDefault();
+	if (event.dataTransfer.getData('text/plain') === 'panel') {
+		panelContainer.style.left = (event.clientX - panelContainer.offsetWidth / 2) + 'px';
+		panelContainer.style.top = (event.clientY - panelContainer.offsetHeight / 10) + 'px';
 	}
+});
 
-	function panel() {
-		document.getElementsByClassName("panel-container")[0].remove()
-	}
+/* Spoofing functions */
+
+/* INITIALIZING VARIABLES WITH HTML */
+
+editTextBox = `
+<div class="form-group form-has-feedback description-container" ng-class="{'form-has-error': $ctrl.layout.descriptionError }">
+<textarea class="form-control input-field personal-field-description ng-valid ng-valid-maxlength ng-touched ng-dirty ng-not-empty" id="descriptionTextBox" placeholder="Tell the Roblox community about what you like to make, build, and explore..." rows="4" ng-model="$ctrl.data.description" maxlength="1000"></textarea>
+<div class="description-event">
+    <span class="small text ng-binding" ng-bind="'Description.AboutWarning' | translate">Keep yourself safe, do not share personal details online.</span> 
+    <!-- ngIf: $ctrl.layout.descriptionError --> <!-- ngIf: !$ctrl.layout.descriptionError -->
+    <p ng-if="!$ctrl.layout.descriptionError" class="form-control-label ng-binding ng-scope" ng-bind="$ctrl.data.description.length | formatCharacterCount: $ctrl.layout.maxDescriptionLength">3/1000</p>
+    <!-- end ngIf: !$ctrl.layout.descriptionError --> 
+</div>
+
+<div class="description-buttons"> 
+    <button id="CancelInfoSettings" class="btn-control-md btn-min-width acct-settings-btn ng-binding" ng-click="$ctrl.updateDescription(false)" ng-bind="'Action.Cancel' | translate" onclick="cancelDescription()">Cancel</button> 
+    <button id="SaveInfoSettings" class="btn-control-md btn-min-width acct-settings-btn ng-binding" ng-click="$ctrl.updateDescription(true)" ng-bind="'Action.Save' | translate" onclick="saveDescription()">Save</button> 
+</div>
+</div>
+`
+
+setDescription = `
+<!--Default profile about section with status intact, remove ! to hide-->
+<div class="profile-about-content toggle-target">
+<!--Use ng-show here so the Read More binding callback can work (Reference/widget.js)-->
+<pre id="profile-about-text" class="text profile-about-text">                    
+    <span class="profile-about-content-text linkify" ng-non-bindable="">$replaceMe</span>    
+</pre>
+<span class="toggle-content text-link cursor-pointer" data-container-id="profile-about-text" data-show-label="Read More" data-hide-label="Show Less" style="display: none;">Read More</span>
+</div>
+`
+
+aboutHeader = `<h2>About</h2>`
+
+let originalDescription;
+
+/* 
+-Setting Up Main Functions (Edit, Cancel, Save) 
+-Adding Change Description Button
+*/
+
+function editDescription() {
+	originalDescription = document.getElementsByClassName("profile-about-content-text linkify")[0].textContent
+	document.getElementsByClassName("section-content remove-panel")[0].innerHTML = editTextBox
+	document.getElementById("descriptionTextBox").value = originalDescription
+	
+	document.getElementsByClassName("container-header")[0].innerHTML = aboutHeader
+}
+
+function saveDescription() {
+	let description = document.getElementById("descriptionTextBox").value;
+	document.getElementsByClassName("section-content remove-panel")[0].innerHTML = setDescription.replace("$replaceMe", description)
+	document.getElementsByClassName("container-header")[0].innerHTML = editButton
+}
+
+function cancelDescription() {
+	document.getElementsByClassName("section-content remove-panel")[0].innerHTML = setDescription.replace("$replaceMe", originalDescription)
+	document.getElementsByClassName("container-header")[0].innerHTML = editButton
+}
+
+function description() {
+	document.getElementsByClassName("container-header")[0].innerHTML = editButton
+}
+
+editButton = `
+<h2 ng-bind="'Heading.AboutTab' | translate" class="ng-binding">About</h2>
+
+<!-- ngIf: $ctrl.layout.canEdit -->
+
+<div ng-if="$ctrl.layout.canEdit" ng-hide="$ctrl.layout.showEditBox" class="ng-scope"> 
+    <button class="btn-generic-edit-sm" ng-click="$ctrl.openEditBox()" onclick="editDescription()"> 
+	<span class="icon-edit"></span> 
+    </button> 
+</div>
+
+<!-- end ngIf: $ctrl.layout.canEdit --> 
+`
+
+function displayname() {
+	document.getElementsByClassName("profile-name text-overflow")[0].contentEditable = true
+	document.getElementsByClassName("profile-name text-overflow")[0].spellcheck = false
+	document.getElementsByClassName("profile-name text-overflow")[0].textContent = "Edit Me"
+}
+
+function action() {
+	document.getElementsByClassName("details-actions desktop-action")[0].remove()
+	document.getElementsByClassName("user-tag-header")[0].remove()
+}
+
+function panel() {
+	document.getElementsByClassName("panel-container")[0].remove()
+}
