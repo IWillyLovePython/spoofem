@@ -1,4 +1,4 @@
-# spoofem
+# spoofem by cereb#8577
 cool panel on roblox to show u "own" an account, execute w js  
 
 
